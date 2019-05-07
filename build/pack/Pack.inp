@@ -1,0 +1,14 @@
+tolerance 2.7
+filetype pdb
+
+output PACKED.pdb
+
+structure ../pdb/SOLVENT
+  number SOLV_NUM
+  inside cube 0.1 0.1 0.1 BOXSIZE
+end structure
+
+structure ../pdb/SOLUTE
+  number 1
+  inside cube 0.1 0.1 0.1 BOXSIZE
+end structure

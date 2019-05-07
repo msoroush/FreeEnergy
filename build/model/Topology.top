@@ -1,0 +1,772 @@
+*
+* Topology File for TraPPE (Martin and Siepmann) United Atom Force Field
+*
+* Parameters From:
+*
+* "Transferable potentials for phase equilibria. 1. United-atom description of n-alkanes." 
+* Martin, Marcus G., and J. Ilja Siepmann.
+* The Journal of Physical Chemistry B 102.14 (1998): 2569-2577.
+* DOI: 10.1021/jp972543+
+*
+*
+* "Novel configurational-bias Monte Carlo method for branched molecules.
+* Transferable potentials for phase equilibria. 2. United-atom description of branched alkanes."
+* Martin, Marcus G., and J. Ilja Siepmann. 
+* The Journal of Physical Chemistry B 103.21 (1999): 4508-4517.
+* DOI: 10.1021/jp984742e
+*
+*
+*
+* Isomer Naming:
+* C4A : n-butane
+* C4B : 2-methylpropane (1)
+* C5A : n-pentane
+* C5B : 2-methylbutane (1)
+* C5C : 2,2-dimethylpropane (2)
+* C6A : n-methylhexane
+* C6B : 2-methylpentane (1)
+* C6C : 3-methylpentane (2)
+* C6D : 2,2-dimethylbutane (3)
+* C6E : 2,3-dimethylbutane (4)
+* C7A : n-heptane
+* C7B : 2-methylhexane (1)
+* C7C : 3-methylhexane (2)
+* C7D : 3-ethylpentane (3)
+* C7E : 2,2-dimethylpentane (4)
+* C7F : 2,3-dimethylpentane (5)
+* C7G : 2,4-dimethylpentane (6)
+* C7H : 3,3-dimethylpentane (7)
+* C7I : 2,2,3-trimethylbutane (8)
+* C8A : n-octane
+* C8B : 2-methylheptane (1)
+* C8C : 3-methylheptane (2)
+* C8D : 4-methylheptane (3)
+* C8E : 3-ethylhexane (4)
+* C8F : 2,2-dimethylhexane (5)
+* C8G : 2,3-dimethylhexane (6)
+* C8H : 2,4-dimethylhexane (7)
+* C8I : 2,5-dimethylhexane (8)
+* C8J : 3,3-dimethylhexane (9)
+* C8K : 3,4-dimethylhexane (10)
+* C8L : 2-methyl-3-ethylpentane (11)
+* C8M : 3-methyl-3-ethylpentane (12)
+* C8N : 2,2,3-trimethylpentane (13)
+* C8O : 2,2,4-trimethylpentane (14)
+* C8P : 2,3,3-trimethylpentane (15)
+* C8Q : 2,3,4-trimethylpentane (16)
+* C8R : 2,2,3,3-tetramethylbutane (17)
+*
+
+!
+!
+!
+MASS   1  CH4    16.043 C  ! 
+MASS   2  CH3    15.035 C  ! 
+MASS   3  CH2    14.027 C  !
+MASS   4  CH1    13.019 C  !
+MASS   5   CT    12.011 C  !
+MASS   6    H    1.0080 H  ! H in alcohol
+MASS   7  OH1	 15.999 O  ! O in alcohol
+MASS   8  CF2    50.000 C  ! CF2  	   
+MASS   9  CF3    69.000 C  ! CF3
+MASS  10  HO     1.0080 H  ! H in water
+MASS  11  OH2	 15.999 O  ! O in water
+MASS  12   HE	 4.0026 He ! He
+
+
+
+DEFA FIRS none LAST none
+AUTOGENERATE ANGLES DIHEDRALS
+
+RESI SPC        0.00 ! SPC water
+GROUP
+ATOM H1 HO      0.41 ! H1    H2
+ATOM O2 OH2    -0.82 !   \  /
+ATOM H2 HO      0.41 !    O2
+BOND O2 H1 O2 H2
+PATCHING FIRS NONE LAST NONE
+
+RESI HE        0.00 ! helium
+GROUP
+ATOM H1  HE     0.00 ! He
+PATCHING FIRS NONE LAST NONE
+
+RESI C1A        0.00 ! methane
+GROUP
+ATOM C1 CH4     0.00 ! C1
+PATCHING FIRS NONE LAST NONE
+
+RESI C2A        0.00 ! ethane
+GROUP
+ATOM C1 CH3     0.00 ! C1-C2
+ATOM C2 CH3     0.00 !
+BOND C1 C2
+PATCHING FIRS NONE LAST NONE
+
+RESI C3A        0.00 ! propane
+GROUP
+ATOM C1 CH3     0.00 ! C1    C3
+ATOM C2 CH2     0.00 !   \  /
+ATOM C3 CH3     0.00 !    C2
+BOND C1 C2 C2 C3
+PATCHING FIRS NONE LAST NONE
+
+RESI C4A        0.00 ! n-butane
+GROUP
+ATOM C1 CH3     0.00 ! C1    C3
+ATOM C2 CH2     0.00 !   \  /  \
+ATOM C3 CH2     0.00 !    C2    C4
+ATOM C3 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+PATCHING FIRS NONE LAST NONE
+
+RESI C4B        0.00 ! 2-methylpropane (isobutane)
+GROUP
+ATOM C1 CH1     0.00 !   C2  C3 
+ATOM C2 CH3     0.00 !    \  / 
+ATOM C3 CH3     0.00 !     C1-C4
+ATOM C4 CH3     0.00 ! 
+BOND C1 C2 C1 C3 C1 C4 
+PATCHING FIRS NONE LAST NONE
+
+RESI C5A        0.00 ! n-pentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 ! C1    C3    C5
+ATOM C3 CH2     0.00 !   \  /  \  /
+ATOM C4 CH2     0.00 !    C2    C4
+ATOM C5 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5
+PATCHING FIRS NONE LAST NONE
+
+RESI C5B        0.00 ! 2-methylbutane
+GROUP
+ATOM C1 CH3     0.00 ! C5
+ATOM C2 CH1     0.00 !  \
+ATOM C3 CH2     0.00 !   C2    C4
+ATOM C4 CH3     0.00 !  /  \  /
+ATOM C5 CH3     0.00 ! C1   C3
+BOND C1 C2 C2 C3 C3 C4
+BOND C2 C5
+PATCHING FIRS NONE LAST NONE
+
+RESI C5C        0.00 ! 2,2-dimethylpropane (neopentane)
+GROUP
+ATOM C1 CT      0.00 ! C2  C5
+ATOM C2 CH3     0.00 !  \  /
+ATOM C3 CH3     0.00 !   C1
+ATOM C4 CH3     0.00 !  /  \
+ATOM C5 CH3     0.00 ! C3   C4
+BOND C1 C2 C1 C3 C1 C4
+BOND C1 C5
+PATCHING FIRS NONE LAST NONE
+
+RESI C6A        0.00 ! n-hexane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 ! C1    C3    C5
+ATOM C3 CH2     0.00 !   \  /  \  /  \
+ATOM C4 CH2     0.00 !    C2    C4    C6
+ATOM C5 CH2     0.00 !
+ATOM C6 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6
+PATCHING FIRS NONE LAST NONE
+
+RESI C6B        0.00 ! 2-methylpentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH1     0.00 ! C6
+ATOM C3 CH2     0.00 !  \
+ATOM C4 CH2     0.00 !   C2    C4
+ATOM C5 CH3     0.00 !  /  \  /  \
+ATOM C6 CH3     0.00 ! C1   C3    C5
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C2 C6
+PATCHING FIRS NONE LAST NONE
+
+RESI C6C        0.00 ! 3-methylpentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 !   C2  C4
+ATOM C3 CH1     0.00 !  / \ / \
+ATOM C4 CH2     0.00 ! C1  C3  C5
+ATOM C5 CH3     0.00 !      \
+ATOM C6 CH3     0.00 !       C6
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C3 C6
+PATCHING FIRS NONE LAST NONE
+
+RESI C6D        0.00 ! 2,2-dimethylbutane
+GROUP
+ATOM C1 CH3     0.00 ! C5  C6
+ATOM C2 CT      0.00 !  \ /
+ATOM C3 CH2     0.00 !   C2   C4
+ATOM C4 CH3     0.00 !  /  \ /
+ATOM C5 CH3     0.00 ! C1   C3
+ATOM C6 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C2 C5 C2 C6
+PATCHIN FIRS NONE LAST NONE
+
+RESI C6E        0.00 ! 2,3-dimethylbutane
+GROUP
+ATOM C1 CH3     0.00 ! C1       C6
+ATOM C2 CH1     0.00 !   \     /
+ATOM C3 CH1     0.00 !    C2-C3
+ATOM C4 CH3     0.00 !   /     \  
+ATOM C5 CH3     0.00 ! C5       C4 
+ATOM C6 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C3 C5 C3 C6
+PATCHING FIRS NONE LAST NONE
+
+RESI C7A        0.00 ! n-heptane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 !
+ATOM C3 CH2     0.00 ! C1    C3    C5    C7
+ATOM C4 CH2     0.00 !   \  /  \  /  \  /
+ATOM C5 CH2     0.00 !    C2    C4    C6
+ATOM C6 CH2     0.00 !
+ATOM C7 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C6 C7
+PATCHING FIRS NONE LAST NONE
+
+RESI C7B        0.00 ! 2-methylhexane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH1     0.00 ! C7
+ATOM C3 CH2     0.00 !   \
+ATOM C4 CH2     0.00 !    C2    C4    C6
+ATOM C5 CH2     0.00 !   /  \  /  \  /
+ATOM C6 CH3     0.00 ! C1    C3    C5
+ATOM C7 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C2 C7
+PATCHING FIRS NONE LAST NONE
+
+RESI C7C        0.00 ! 3-methylhexane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH1     0.00 !     C7
+ATOM C3 CH2     0.00 !      \
+ATOM C4 CH2     0.00 ! C1    C3    C5
+ATOM C5 CH2     0.00 !   \  /  \  /  \
+ATOM C6 CH3     0.00 !    C2    C4    C6
+ATOM C7 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C3 C7
+PATCHING FIRS NONE LAST NONE
+
+RESI C7D        0.00 ! 3-ethylpentane
+GROUP
+ATOM C1 CH3     0.00 !       C7
+ATOM C2 CH2     0.00 !      /
+ATOM C3 CH1     0.00 !     C6 
+ATOM C4 CH2     0.00 !      \
+ATOM C5 CH3     0.00 ! C1    C3    C5
+ATOM C6 CH2     0.00 !   \  /  \  /
+ATOM C7 CH3     0.00 !    C2    C4
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C3 C6 C6 C7
+PATCHING FIRS NONE LAST NONE
+
+RESI C7E        0.00 ! 2,2-dimethylpentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CT      0.00 ! C1    C3    C5
+ATOM C3 CH2     0.00 !   \  /  \  /
+ATOM C4 CH2     0.00 !    C2    C4
+ATOM C5 CH3     0.00 !   /  \
+ATOM C6 CH3     0.00 ! C6    C7
+ATOM C7 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C2 C6 C2 C7
+PATCHING FIRS NONE LAST NONE
+
+RESI C7F        0.00 ! 2,3-dimethylpentane
+GROUP
+ATOM C1 CH3     0.00 !     C7
+ATOM C2 CH1     0.00 !      \
+ATOM C3 CH1     0.00 ! C1    C3    C5
+ATOM C4 CH2     0.00 !   \  /  \  /
+ATOM C5 CH3     0.00 !    C2    C4
+ATOM C6 CH3     0.00 !   /
+ATOM C7 CH3     0.00 ! C6
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C2 C6 C3 C7
+PATCHING FIRS NONE LAST NONE
+
+RESI C7G        0.00 ! 2,4-dimethylpentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH1     0.00 ! C1    C3    C5
+ATOM C3 CH2     0.00 !   \  /  \  /
+ATOM C4 CH1     0.00 !    C2    C4
+ATOM C5 CH3     0.00 !   /        \
+ATOM C6 CH3     0.00 ! C6          C7
+ATOM C7 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C2 C6 C4 C7
+PATCHING FIRS NONE LAST NONE
+
+RESI C7H        0.00 ! 3,3-dimethylpentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 !    C2    C4
+ATOM C3 CT      0.00 !   /  \  /  \
+ATOM C4 CH2     0.00 ! C1    C3    C5
+ATOM C5 CH3     0.00 !      /  \
+ATOM C6 CH3     0.00 !    C6    C7
+ATOM C7 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C3 C6 C3 C7
+PATCHING FIRS NONE LAST NONE
+
+RESI C7I        0.00 ! 2,2,3-trimethylbutane
+GROUP
+ATOM C1 CH3     0.00 ! C5    C6
+ATOM C2 CT      0.00 !   \  /
+ATOM C3 CH1     0.00 !    C2    C4
+ATOM C4 CH3     0.00 !   /  \  /
+ATOM C5 CH3     0.00 ! C1    C3
+ATOM C6 CH3     0.00 !         \
+ATOM C7 CH3     0.00 !          C7
+BOND C1 C2 C2 C3 C3 C4
+BOND C2 C5 C2 C6 C3 C7
+PATCHING FIRS NONE LAST NONE
+
+RESI C8A        0.00 ! n-octane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 !
+ATOM C3 CH2     0.00 !
+ATOM C4 CH2     0.00 ! C1    C3    C5    C7
+ATOM C5 CH2     0.00 !   \  /  \  /  \  /  \
+ATOM C6 CH2     0.00 !    C2    C4    C6    C8
+ATOM C7 CH2     0.00 !
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C6 C7
+BOND C7 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8B        0.00 ! 2-methylheptane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH1     0.00 !
+ATOM C3 CH2     0.00 ! C1    C3    C5    C7
+ATOM C4 CH2     0.00 !   \  /  \  /  \  /
+ATOM C5 CH2     0.00 !    C2    C4    C6
+ATOM C6 CH2     0.00 !   /
+ATOM C7 CH3     0.00 ! C8
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C6 C7
+BOND C2 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8C        0.00 ! 3-methylheptane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 !    C8
+ATOM C3 CH1     0.00 !      \
+ATOM C4 CH2     0.00 ! C1    C3    C5    C7
+ATOM C5 CH2     0.00 !   \  /  \  /  \  /
+ATOM C6 CH2     0.00 !    C2    C4    C6
+ATOM C7 CH3     0.00 !
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C6 C7
+BOND C3 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8D        0.00 ! 4-methylheptane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 !
+ATOM C3 CH2     0.00 ! C1    C3    C5    C7
+ATOM C4 CH1     0.00 !   \  /  \  /  \  /
+ATOM C5 CH2     0.00 !    C2    C4    C6
+ATOM C6 CH2     0.00 !            \
+ATOM C7 CH3     0.00 !             C8
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C6 C7
+BOND C4 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8E        0.00 ! 3-ethylhexane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 !      C8
+ATOM C3 CH1     0.00 !        \
+ATOM C4 CH2     0.00 !        C7
+ATOM C5 CH2     0.00 !        /
+ATOM C6 CH3     0.00 ! C1    C3    C5
+ATOM C7 CH2     0.00 !   \  /  \  /  \
+ATOM C8 CH3     0.00 !    C2    C4    C6
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C3 C7
+BOND C7 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8F        0.00 ! 2,2-dimethylhexane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CT      0.00 ! C1    C3    C5
+ATOM C3 CH2     0.00 !   \  /  \  /  \
+ATOM C4 CH2     0.00 !    C2    C4    C6
+ATOM C5 CH2     0.00 !   /  \
+ATOM C6 CH3     0.00 ! C7    C8
+ATOM C7 CH3     0.00 !
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C2 C7
+BOND C2 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8G        0.00 ! 2,3-dimethylpentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH1     0.00 !     C8
+ATOM C3 CH1     0.00 !      \
+ATOM C4 CH2     0.00 ! C1    C3    C5
+ATOM C5 CH2     0.00 !   \  /  \  /  \
+ATOM C6 CH3     0.00 !    C2    C4    C6
+ATOM C7 CH3     0.00 !   /
+ATOM C8 CH3     0.00 ! C7
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C2 C7
+BOND C3 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8H        0.00 ! 2,4-dimethylhexane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH1     0.00 ! C1    C3    C5
+ATOM C3 CH2     0.00 !   \  /  \  /  \
+ATOM C4 CH1     0.00 !    C2    C4    C6
+ATOM C5 CH2     0.00 !   /        \
+ATOM C6 CH3     0.00 ! C7          C8
+ATOM C7 CH3     0.00 !
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C2 C7
+BOND C4 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8I        0.00 ! 2,5-dimethylhexane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH1     0.00 !                C8
+ATOM C3 CH2     0.00 !               /
+ATOM C4 CH2     0.00 ! C1    C3    C5
+ATOM C5 CH1     0.00 !   \  /  \  /  \
+ATOM C6 CH3     0.00 !    C2    C4    C6
+ATOM C7 CH3     0.00 !   /
+ATOM C8 CH3     0.00 ! C7
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C2 C7
+BOND C5 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8J        0.00 ! 3,3-dimethylhexane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 !    C7    C8
+ATOM C3 CT      0.00 !      \  /
+ATOM C4 CH2     0.00 ! C1    C3    C5
+ATOM C5 CH2     0.00 !   \  /  \  /  \
+ATOM C6 CH3     0.00 !    C2    C4    C6
+ATOM C7 CH3     0.00 !
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C3 C7
+BOND C3 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8K        0.00 ! 3,4-dimethylhexane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH2     0.00 !    C7
+ATOM C3 CH1     0.00 !      \
+ATOM C4 CH1     0.00 ! C1    C3    C5
+ATOM C5 CH2     0.00 !   \  /  \  /  \
+ATOM C6 CH3     0.00 !    C2    C4    C6
+ATOM C7 CH3     0.00 !            \
+ATOM C8 CH3     0.00 !             C8
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C5 C6 C3 C7
+BOND C4 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8L        0.00 ! 2-methyl-3-ethylpentane
+GROUP
+ATOM C1 CH3     0.00 !        C8
+ATOM C2 CH1     0.00 !       /
+ATOM C3 CH1     0.00 !      C7
+ATOM C4 CH2     0.00 !       \
+ATOM C5 CH3     0.00 !  C1    C3    C5
+ATOM C6 CH3     0.00 !    \  /  \  /
+ATOM C7 CH2     0.00 ! C6--C2    C4
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C2 C6 C3 C7
+BOND C7 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8M        0.00 ! 3-methyl-3-ethylpentane
+GROUP
+ATOM C1 CH3     0.00 !         C8
+ATOM C2 CH2     0.00 !          \
+ATOM C3 CT      0.00 !     C6   C7
+ATOM C4 CH2     0.00 !       \  /
+ATOM C5 CH3     0.00 !  C1    C3    C5
+ATOM C6 CH3     0.00 !    \  /  \  /
+ATOM C7 CH2     0.00 !     C2    C4
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C3 C6 C3 C7
+BOND C7 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8N        0.00 ! 2,2,3-trimethylpentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CT      0.00 ! C6    C7
+ATOM C3 CH1     0.00 !   \  /
+ATOM C4 CH2     0.00 !    C2    C4
+ATOM C5 CH3     0.00 !   /  \  /  \
+ATOM C6 CH3     0.00 ! C1    C3    C5
+ATOM C7 CH3     0.00 !      /
+ATOM C8 CH3     0.00 !    C8
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C2 C6 C2 C7
+BOND C3 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8O        0.00 ! 2,2,4-trimethylpentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CT      0.00 ! C6    C7    C8
+ATOM C3 CH2     0.00 !   \  /     /
+ATOM C4 CH1     0.00 !    C2    C4
+ATOM C5 CH3     0.00 !   /  \  /  \
+ATOM C6 CH3     0.00 ! C1    C3    C5
+ATOM C7 CH3     0.00 !
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C2 C6 C2 C7
+BOND C4 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8P        0.00 ! 2,3,3-trimethylpentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH1     0.00 ! C6
+ATOM C3 CT      0.00 !   \
+ATOM C4 CH2     0.00 !    C2    C4
+ATOM C5 CH3     0.00 !   /  \  /  \
+ATOM C6 CH3     0.00 ! C1    C3    C5
+ATOM C7 CH3     0.00 !      /  \
+ATOM C8 CH3     0.00 !    C7    C8
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C2 C6 C3 C7
+BOND C3 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C8Q        0.00 ! 2,3,4-trimethylpentane
+GROUP
+ATOM C1 CH3     0.00 !
+ATOM C2 CH1     0.00 ! C6          C8
+ATOM C3 CH1     0.00 !   \        /
+ATOM C4 CH1     0.00 !    C2    C4
+ATOM C5 CH3     0.00 !   /  \  /  \
+ATOM C6 CH3     0.00 ! C1    C3    C5
+ATOM C7 CH3     0.00 !      /
+ATOM C8 CH3     0.00 !    C7
+BOND C1 C2 C2 C3 C3 C4
+BOND C4 C5 C2 C6 C3 C7
+BOND C4 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI Q8R        0.00 ! 2,2,3,3-tetramethylbutane
+GROUP
+ATOM C1 CH3     0.00 !  C5     C7
+ATOM C2 CT      0.00 !    \   /
+ATOM C3 CT      0.00 ! C1-C2-C3-C4
+ATOM C4 CH3     0.00 !    /   \
+ATOM C5 CH3     0.00 !  C6     C8
+ATOM C6 CH3     0.00 !
+ATOM C7 CH3     0.00 !
+ATOM C8 CH3     0.00 !
+BOND C1 C2 C2 C3 C3 C4
+BOND C2 C5 C2 C6 C3 C7
+BOND C3 C8
+PATCHING FIRS NONE LAST NONE
+
+RESI C16P        0.00 ! hexadecane
+GROUP
+ATOM C1  CH3     0.00 !  *
+ATOM C2  CH2     0.00 !  *
+ATOM C3  CH2     0.00 !  *
+ATOM C4  CH2     0.00 !  *
+ATOM C5  CH2     0.00 !  *
+ATOM C6  CH2     0.00 !  *
+ATOM C7  CH2     0.00 !  *
+ATOM C8  CH2     0.00 !  *
+ATOM C9  CH2     0.00 !  *
+ATOM C10 CH2     0.00 !  *
+ATOM C11 CH2     0.00 !  *
+ATOM C12 CH2     0.00 !  *
+ATOM C13 CH2     0.00 !  *
+ATOM C14 CH2     0.00 !  *
+ATOM C15 CH2     0.00 !  *
+ATOM C16 CH3     0.00 !  *
+BOND C1  C2  C2  C3  C3  C4
+BOND C4  C5  C5  C6  C6  C7
+BOND C7  C8  C8  C9  C9  C10
+BOND C10 C11 C11 C12 C12 C13
+BOND C13 C14 C14 C15 C15 C16
+PATCHING FIRS NONE LAST NONE
+
+
+!1-octanol
+RESI C8OH	  0.00
+GROUP
+ATOM H1   H     0.435 
+ATOM O1   OH1  -0.70   
+ATOM C1	  CH2   0.265 
+GROUP
+ATOM C2	  CH2	0.00    
+ATOM C3	  CH2	0.00  
+ATOM C4	  CH2   0.00  
+ATOM C5	  CH2   0.00  
+ATOM C6   CH2   0.00  
+ATOM C7   CH2   0.00  
+ATOM C8   CH3   0.00  
+BOND H1 O1  O1 C1  C1 C2  
+BOND C2 C3  C3 C4  C4 C5  
+BOND C5 C6  C6 C7  C7 C8
+PATCHING FIRS NONE LAST NONE
+
+!perfluoromethanol
+RESI F3O           0.00  ! CF3-OH
+GROUP
+ATOM  H1   H      0.435 ! ok
+ATOM  O1   OH1    -0.70 ! 
+ATOM  C1   CF3     0.265
+
+BOND H1 O1  O1 C1 
+AUTOGENERATE ANGLES DIHEDRALS
+
+!perfluoroethanol
+RESI F5O           0.00  ! CF3-CF2-OH
+GROUP
+ATOM  H1   H      0.435 ! ok
+ATOM  O1   OH1    -0.700 ! 
+ATOM  C1   CF2     0.265
+ATOM  C2   CF3     0.00
+
+BOND H1 O1   O1 C1   C1 C2
+AUTOGENERATE ANGLES DIHEDRALS
+
+!perfluoropropanol
+RESI F7O          0.00  ! CF3-CF2-CF2-OH
+GROUP
+ATOM  H1   H     0.435 ! ok
+ATOM  O1   OH1   -0.700 ! 
+ATOM  C1   CF2     0.265 
+ATOM  C2   CF2     0.0
+ATOM  C3   CF3     0.0
+BOND H1 O1   O1 C1   C1 C2 C2 C3
+AUTOGENERATE ANGLES DIHEDRALS
+
+!perfluorobutanol
+RESI  F9O          0.00  ! CF3-CF2-CF2-CF2-OH
+GROUP
+ATOM  H1   H      0.435 ! ok
+ATOM  O1   OH1    -0.700 ! 
+ATOM  C1   CF2     0.265
+ATOM  C2   CF2     0.0
+ATOM  C3   CF2     0.0
+ATOM  C4   CF3     0.0
+BOND H1 O1   O1 C1 C1 C2
+BOND C2 C3 C3 C4
+AUTOGENERATE ANGLES DIHEDRALS
+
+!perfluoropentanol
+RESI  F11O         0.00  ! CF3-CF2-CF2-CF2-CF2-OH
+GROUP
+ATOM  H1   H      0.435 ! ok
+ATOM  O1   OH1    -0.70 ! 
+ATOM  C1   CF2      0.265
+ATOM  C2   CF2      0.0
+ATOM  C3   CF2      0.0
+ATOM  C4   CF2      0.0
+ATOM  C5   CF3      0.0
+
+BOND H1 O1   O1 C1 C1 C2
+BOND C2 C3 C3 C4 C4 C5
+AUTOGENERATE ANGLES DIHEDRALS
+
+!perfluorohexanol
+RESI  F13O         0.00  ! CF3-CF2-CF2-CF2-CF2-CF2-OH
+GROUP
+ATOM  H1   H      0.435 ! ok
+ATOM  O1   OH1    -0.70 ! fixed per 1996 OPLS-AA paper
+ATOM  C1   CF2      0.265
+ATOM  C2   CF2      0.0
+ATOM  C3   CF2      0.0
+ATOM  C4   CF2      0.0
+ATOM  C5   CF2      0.0
+ATOM  C6   CF3      0.0
+BOND H1 O1   O1 C1 C1 C2
+BOND C2 C3 C3 C4 C4 C5 C5 C6
+AUTOGENERATE ANGLES DIHEDRALS
+
+!perfluoroheptanol
+RESI  F15O         0.00  ! CF3-CF2-CF2-CF2-CF2-CF2-CF2-OH
+GROUP
+ATOM  H1   H      0.435 ! ok
+ATOM  O1   OH1    -0.70 !
+ATOM  C1   CF2      0.265
+ATOM  C2   CF2      0.0
+ATOM  C3   CF2      0.0
+ATOM  C4   CF2      0.0
+ATOM  C5   CF2      0.0
+ATOM  C6   CF2      0.0
+ATOM  C7   CF3      0.0
+
+BOND H1 O1   O1 C1 C1 C2
+BOND C2 C3 C3 C4 C4 C5 C5 C6 C6 C7
+AUTOGENERATE ANGLES DIHEDRALS
+
+!perfluorooctanol
+RESI F17O          0.00  ! CF3-CF2-CF2-CF2-CF2-CF2-CF2-CF2-OH
+GROUP
+ATOM  H1   H      0.435 ! ok
+ATOM  O1   OH1     -0.70 !
+ATOM  C1   CF2      0.265
+ATOM  C2   CF2      0.0
+ATOM  C3   CF2      0.0
+ATOM  C4   CF2      0.0
+ATOM  C5   CF2      0.0
+ATOM  C6   CF2      0.0
+ATOM  C7   CF2      0.00
+ATOM  C8   CF3      0.00
+
+BOND H1 O1   O1 C1   C1 C2 C2 C3
+BOND C3 C4   C4 C5   C5 C6 C6 C7
+BOND C7 C8
+AUTOGENERATE ANGLES DIHEDRALS
+
+
+
+
+
+END
