@@ -1,5 +1,5 @@
 #PBS -q wsuq
-#PBS -l select=1:ncpus=NCPU:mem=8gb
+#PBS -l select=1:ncpus=NCPU:mem=8gb:cpu_type=Intel
 #PBS -j oe
 #PBS -m abe
 #PBS -M fj2314@wayne.edu
