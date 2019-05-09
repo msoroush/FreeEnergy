@@ -18,6 +18,10 @@ OH1  CF2   99999999999     1.4300 ! Alcohol
 OH1  CF3   99999999999     1.4300 ! Alcohol
 CF2  CF2   99999999999     1.5400
 CF2  CF3   99999999999     1.5400
+! fluorotelomer
+CH2  CF2   99999999999     1.5400
+CH2  CF3   99999999999     1.5400
+CH3  CF2   99999999999     1.5400
 !water SPC
 HO   OH2   99999999999     1.0000
 
@@ -27,17 +31,30 @@ ANGLES
 !
 !atom types     Ktheta    Theta0  
 !
-CH2  CH2  CH2    62.1    114.0    ! Octanol
-CH2  CH2  CH3    62.1    114.0    ! Octanol
-H    OH1  CH2    55.0    108.5    ! octanol
-OH1  CH2  CH2    50.1	 109.5    ! octanol
+CH2  CH2  CH2    62.1    114.0    ! Alkane
+CH2  CH2  CH3    62.1    114.0    ! Alkane
+! alcohol
+H    OH1  CH3    55.0    108.5    ! Alcohol
+H    OH1  CH2    55.0    108.5    ! Alcohol
+OH1  CH2  CH2    50.1	 109.5    ! Alcohol
+OH1  CH2  CH3    50.1	 109.5    ! Alcohol
 !Fluorocarbons
 H    OH1  CF2   55.0    108.5  
 H    OH1  CF3   55.0    108.5  
 OH1  CF2  CF3	62.1    109.5
 OH1  CF2  CF2	62.1    109.5	
+CF3  CF2  CF3	62.1    114.0	
 CF2  CF2  CF3	62.1    114.0	
-CF2  CF2  CF2	62.1    114.0	
+CF2  CF2  CF2	62.1    114.0
+! fluorotelomer	
+CF3  CH2  CH3	62.1    114.0	
+CF2  CH2  CH3	62.1    114.0		
+CF3  CH2  CH2	62.1    114.0	
+CF2  CH2  CH2	62.1    114.0	
+CF3  CF2  CH3	62.1    114.0	
+CF2  CF2  CH3	62.1    114.0		
+CF3  CF2  CH2	62.1    114.0	
+CF2  CF2  CH2	62.1    114.0			
 !water SPC
 HO   OH2  HO   99999999999  109.47
 
@@ -87,6 +104,41 @@ H    OH1  CF2  CF2      0.6556  3     0.00
 H    OH1  CF2  CF3      0.8392  1     0.00  
 H    OH1  CF2  CF3     -0.1096  2   180.00  
 H    OH1  CF2  CF3      0.6556  3     0.00  
+! fluorotelomer
+H    OH1  CH2  CF2      0.8392  1     0.00 
+H    OH1  CH2  CF2     -0.1096  2   180.00 
+H    OH1  CH2  CF2      0.6556  3     0.00  
+H    OH1  CH2  CF3      0.8392  1     0.00  
+H    OH1  CH2  CF3     -0.1096  2   180.00  
+H    OH1  CH2  CF3      0.6556  3     0.00 
+OH1  CH2  CF2  CF3     -0.0421  1     0.00
+OH1  CH2  CF2  CF3     -0.0604  2   180.00
+OH1  CH2  CF2  CF3      2.3476  3     0.00 
+OH1  CH2  CF2  CF2     -0.0421  1     0.00
+OH1  CH2  CF2  CF2     -0.0604  2   180.00
+OH1  CH2  CF2  CF2      2.3476  3     0.00
+OH1  CH2  CH2  CF3      1.5951  1     0.00
+OH1  CH2  CH2  CF3     -1.0807  2   180.00
+OH1  CH2  CH2  CF3      1.6495  3     0.00 
+OH1  CH2  CH2  CF2      1.5951  1     0.00
+OH1  CH2  CH2  CF2     -1.0807  2   180.00
+OH1  CH2  CH2  CF2      1.6495  3     0.00 
+CH2  CF2  CF2  CF3	1.588	1     0.00
+CH2  CF2  CF2  CF3     -0.6481	2   180.00
+CH2  CF2  CF2  CF3	1.712	3     0.00
+CH2  CF2  CF2  CF3     -0.6791	4   180.00
+CH2  CF2  CF2  CF2      1.588   1     0.00
+CH2  CF2  CF2  CF2     -0.6481  2   180.00
+CH2  CF2  CF2  CF2      1.712   3     0.00
+CH2  CF2  CF2  CF2     -0.6791 	4   180.00
+CH2  CH2  CF2  CF3	1.588	1     0.00
+CH2  CH2  CF2  CF3     -0.6481	2   180.00
+CH2  CH2  CF2  CF3	1.712	3     0.00
+CH2  CH2  CF2  CF3     -0.6791	4   180.00
+CH2  CH2  CF2  CF2      1.588   1     0.00
+CH2  CH2  CF2  CF2     -0.6481  2   180.00
+CH2  CH2  CF2  CF2      1.712   3     0.00
+CH2  CH2  CF2  CF2     -0.6791 	4   180.00
 
  
 
