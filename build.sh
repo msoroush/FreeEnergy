@@ -49,10 +49,11 @@ do
 
     echo "Packing the system for ${SOLUTE_RESNAME}"
     cd ${BUILD_DIR}/pack/.
+    PACK_SIZE=$( echo "${BOX_SIZE} - 1.5" | bc )
     sed -i 's#SOLVENT#'${SOLVENT}'#g' Pack.inp;
     sed -i 's#SOLV_NUM#'${N_SOLVENT}'#g' Pack.inp;
     sed -i 's#SOLUTE#'${SOLUTE}'#g' Pack.inp;
-    sed -i 's#BOXSIZE#'${BOX_SIZE}'#g' Pack.inp;
+    sed -i 's#BOXSIZE#'${PACK_SIZE}'#g' Pack.inp;
     ./packmol < Pack.inp >& PACK.log
     vmd -dispdev text < build.tcl >& PACK.log
 
