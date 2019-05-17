@@ -11,7 +11,7 @@ This repository is a bash script to prepare the simulation files for FreeEnergy 
 4. [alchemlyb](https://github.com/msoroush/alchemlyb) for analysis the results.
 
 ## What does it do?
-The `build.sh` will pack the box with defined solvent, generate PDB and PSF file for solvent and solute. It creates directory for each solvent. Inside each solvent directory, it creates `EQ` direcotry for NVT and NPT equilibration simulation. Then it creates `TI` direcotry and inside that create separate `state_0, state_1, ...` directory.
+The `build.sh` will pack the box with defined solvent, generate PDB and PSF file for solvent and solute. It creates directory for each solvent. Inside each solvent directory, it creates `EQ` direcotry for NVT and NPT equilibration simulation. Then it creates `TI_` direcotry for each replica and inside that create separate `state_0, state_1, ...` directory.
 ```
 Solvent
 |___________ build
@@ -24,7 +24,7 @@ Solvent
 |            |_______ NVT (running NVT simulation prior NPT, using PDB and PSF files in build/pack)
 |            |_______ NPT (running NPT simulation from equilibrated NVT simulation, using PDB and PSF files in EQ/NVT)
 |
-|____________ TI
+|____________ TI_1
              |_______ state_0 (equilibrte the system with NVT simulation with lambda state 0, using PDB and PSF files in EQ/NPT) 
              |                (production run in NVT simulation with lambda state 0, using equilibrated system)
              |_______ state_1 (running NVT simulation with lambda state 1, using PDB and PSF files in EQ/NPT)
@@ -46,6 +46,7 @@ To add another molecule, you need to:
 We can define a range of solute name in `build.sh` to calculate the free energy.
 ```bash
 #system info
+NREP=5                                                      # number of TI replica
 SOLVENT="octanol.pdb"                                       # pdb name of solvent
 TOT_SOLUTE=(pfmethanol.pdb pfethanol.pdb pfpropanol.pdb)    # pdb names of solute 
 TOT_SOLUTE_RESNAME=(F3O F5O F7O)                            # residue name of solute 

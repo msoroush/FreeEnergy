@@ -1,6 +1,6 @@
 from alchemlyb.parsing.gomc import  extract_dHdl
 from alchemlyb.parsing.gomc import  extract_u_nk
-from alchemlyb.estimators import MBAR
+from alchemlyb.estimators import MBAR, BAR
 from alchemlyb.estimators import TI
 import pandas as pd
 import os
@@ -47,5 +47,11 @@ for com in compounds:
     sum = mbar.delta_f_.loc[[(0.0, 0.0)], [(1.0, 1.0)]].values[0][0] * k_b_T
     sum_ds = mbar.d_delta_f_.loc[[(0.0, 0.0)], [(1.0, 1.0)]].values[0][0] * k_b_T
     print("Free Energy of %4s from MBAR: %3.4f +/- %3.4f (kJ/mol) \n" % (com, sum, sum_ds))
+
+    #for BAR estimator
+    print("Working on BAR method ...")
+    bar = BAR().fit(u_nk)
+    sum = bar.delta_f_.loc[[(0.0, 0.0)], [(1.0, 1.0)]].values[0][0] * k_b_T
+    print("Free Energy of %4s from BAR: %3.4f (kJ/mol) \n" % (com, sum))
 
 
