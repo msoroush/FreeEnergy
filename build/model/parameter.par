@@ -57,6 +57,9 @@ CF3  CF2  CH2	62.1    114.0
 CF2  CF2  CH2	62.1    114.0			
 OH1  CH2  CF3   62.1    109.5
 OH1  CH2  CF2   62.1    109.5
+! for H7F1 telomer, we use pfalcohol parameter
+OH1  CF2  CH3	62.1    109.5
+OH1  CF2  CH2   62.1    109.5
 !water SPC
 HO   OH2  HO   99999999999  109.47
 
@@ -141,8 +144,22 @@ CH2  CH2  CF2  CF2      1.588   1     0.00
 CH2  CH2  CF2  CF2     -0.6481  2   180.00
 CH2  CH2  CF2  CF2      1.712   3     0.00
 CH2  CH2  CF2  CF2     -0.6791 	4   180.00
-
- 
+! for H7F1 and H6F2 telomer
+H    OH1  CF2  CH2      1.793   1     0.00  !QM (MP2/6-31+g(d,p))
+H    OH1  CF2  CH2      0.6984  2   180.00  !QM (MP2/6-31+g(d,p))
+H    OH1  CF2  CH2      0.5409  3     0.00  !QM (MP2/6-31+g(d,p))
+CF2  CH2  CH2  CH2      1.5522  1     0.00  !QM (MP2/6-31+g(d,p))
+CF2  CH2  CH2  CH2     -0.8265  2   180.00  !QM (MP2/6-31+g(d,p))
+CF2  CH2  CH2  CH2      1.4588  3     0.00  !QM (MP2/6-31+g(d,p))
+CF2  CH2  CH2  CH2     -0.1063  4   180.00  !QM (MP2/6-31+g(d,p))
+OH1  CF2  CH2  CH2      0.0000  1     0.00  !QM (MP2/6-31+g(d,p))
+OH1  CF2  CH2  CH2      0.0000  2   180.00  !QM (MP2/6-31+g(d,p))
+OH1  CF2  CH2  CH2      2.0187  3     0.00  !QM (MP2/6-31+g(d,p))
+OH1  CF2  CH2  CH2      0.0800  4     0.00  !QM (MP2/6-31+g(d,p))
+OH1  CF2  CF2  CH2     -0.2315  1     0.00  !QM (MP2/6-31+g(d,p))
+OH1  CF2  CF2  CH2      0.0881  2   180.00  !QM (MP2/6-31+g(d,p))
+OH1  CF2  CF2  CH2      2.7794  3     0.00  !QM (MP2/6-31+g(d,p))
+OH1  CF2  CF2  CH2      0.1366  4     0.00  !QM (MP2/6-31+g(d,p))
 
 NONBONDED 
 !
@@ -165,5 +182,3 @@ OH1	0.000000    -0.184799   1.694918   0.0   0.0   0.0
 ! SPC 
 HO	0.000000     0.000000   0.000000   0.0   0.0   0.0
 OH2	0.000000    -0.155411   1.7774185   0.0   0.0   0.0
-! carrier
-HE	0.000000    -0.0079488  1.7454285   0.0   0.0   0.0
