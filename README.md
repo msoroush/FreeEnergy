@@ -11,24 +11,28 @@ This repository is a bash script to prepare the simulation files for FreeEnergy 
 4. [alchemlyb](https://github.com/msoroush/alchemlyb) for analysis the results.
 
 ## What does it do?
-The `build.sh` will pack the box with defined solvent, generate PDB and PSF file for solvent and solute. It creates directory for each solvent. Inside each solvent directory, it creates `EQ` direcotry for NVT and NPT equilibration simulation. Then it creates `TI_` direcotry for each replica and inside that create separate `state_0, state_1, ...` directory.
+The `build.sh` will pack the box with defined solvent, generate PDB and PSF file for solvent and solute. It creates directory for each solvent. Inside each solvent directory, it creates `TI_` direcotry for each replica and inside that create separate `state_0, state_1, ...` directory. Inside each state_* directory, it creates `EQ` direcotry for NVT and NPT equilibration simulation.
 ```
 Solvent
 |___________ build
-|            |______ input files (config files, GOMC executables, job scripts)
+|            |______ input files (config files, GOMC executables, job script)
 |            |______ pdb files (single PDB files for solvent and solute)
 |            |______ model (parameter and topology files for solvent and solute)
 |            |______ pack (initial PDB and PSF files for equilibration)
 |
-|___________ EQ
-|            |_______ NVT (running NVT simulation prior NPT, using PDB and PSF files in build/pack)
-|            |_______ NPT (running NPT simulation from equilibrated NVT simulation, using PDB and PSF files in EQ/NVT)
-|
 |____________ TI_1
-             |_______ state_0 (equilibrte the system with NVT simulation with lambda state 0, using PDB and PSF files in EQ/NPT) 
-             |                (production run in NVT simulation with lambda state 0, using equilibrated system)
-             |_______ state_1 (running NVT simulation with lambda state 1, using PDB and PSF files in EQ/NPT)
-             |                (production run in NVT simulation with lambda state 0, using equilibrated system)
+             |_______ state_0 (production run in NVT simulation at lambda 0, using PDB and PSF files in EQ/NPT) 
+	     |	      |
+	     |        |______ EQ
+	     |                |_______ NVT (running NVT simulation prior NPT, at lambda 0 using PDB and PSF files in build/pack)
+	     |	              |_______ NPT (running NPT simulation from equilibrated NVT simulation at lambda 0, using PDB and PSF files in EQ/NVT)
+             |                
+             |_______ state_1 (production run in NVT simulation, using PDB and PSF files in EQ/NPT) 
+	     |	      |
+	     |        |______ EQ
+	     |                |_______ NVT (running NVT simulation prior NPT at lambda 0, using PDB and PSF files in build/pack)
+	     |	              |_______ NPT (running NPT simulation from equilibrated NVT simulation at lambda 0, using PDB and PSF files in EQ/NVT)
+             |                
              |_______  ...
   ```
   
