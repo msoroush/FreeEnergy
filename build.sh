@@ -3,11 +3,11 @@
 BASE_DIR=`pwd`;
 BUILD_DIR="build"
 CPU=4
-NREP=5
+NREP=1
 #system info
 SOLVENT="octanol.pdb"
-TOT_SOLUTE=(pfmethanol.pdb pfethanol.pdb pfpropanol.pdb pfbutanol.pdb pfpentanol.pdb pfhexanol.pdb pfheptanol.pdb pfoctanol.pdb)
-TOT_SOLUTE_RESNAME=(F3O F5O F7O F9O F11O F13O F15O F17O)
+TOT_SOLUTE=(octanol.pdb H7F1.pdb H6F2.pdb H2F6.pdb H1F7.pdb pfoctanol.pdb)
+TOT_SOLUTE_RESNAME=(C8OH H7F1 H6F2 H2F6 H1F7 F17O)
 #packing info
 N_SOLVENT=200
 BOX_SIZE=37.6
@@ -16,7 +16,7 @@ T=298
 P=1.01325
 RCUT=14
 RCUTLOW=0.01
-FE_MC=100000000 #steps for free energy simulation
+FE_MC=50000000 #steps for free energy simulation
 EQ_MC=5000000   #steps for eq simulation
 NPT_MC=30000000 #steps for NPT simulation
 FE_FREQ=5000    #free energy calc frequency
@@ -55,11 +55,13 @@ do
     sed -i 's#SOLV_NUM#'${N_SOLVENT}'#g' Pack.inp;
     sed -i 's#SOLUTE#'${SOLUTE}'#g' Pack.inp;
     sed -i 's#BOXSIZE#'${PACK_SIZE}'#g' Pack.inp;
-    ./packmol < Pack.inp >& PACK.log
-    vmd -dispdev text < build.tcl >& PACK.log
-
-    if [ ! -f "START.psf" ]; then
+    ./packmol < Pack.inp >& PACK.log    
+    if [ ! -f "PACKED.pdb" ]; then
 	echo "Packing failed! Look at the ${WD}/${BUILD_DIR}/pack/PACK.log file."
+    fi
+    vmd -dispdev text < build.tcl >& PACK.log
+    if [ ! -f "START.psf" ]; then
+	echo "PSF generator failed! Look at the ${WD}/${BUILD_DIR}/pack/PACK.log file."
     fi
 
     #set the common variable in config file
@@ -75,24 +77,8 @@ do
     sed -i s/"LAMBDA_VDW"/"${VDW[*]}"/g *.conf
     sed -i s/"LAMBDA_COULOMB"/"${COUL[*]}"/g *.conf
 
-
-    cd $WD
-    mkdir EQ
-    echo "Working on Equilibration files"
-    EQD=${WD}/EQ
-    cd ${EQD}
+    cd ${WD}
     IND=${WD}/${BUILD_DIR}/input/
-    mkdir NVT NPT
-    EQ_JOB=${SOLUTE_RESNAME}"_eq.sh"
-    cp ${IND}/eq.sh ${EQ_JOB}
-    cp ${IND}/NVT.conf ./NVT/.
-    cp ${IND}/NPT.conf ./NPT/.
-    cp ${IND}/GOMC_CPU_NVT ./NVT/.
-    cp ${IND}/GOMC_CPU_NPT ./NPT/.
-    sed -i 's#RUN_DIR#'`pwd`'#g' ${EQ_JOB}
-    sed -i 's#MCSTEPS#'${EQ_MC}'#g' NVT/*.conf
-    sed -i 's#MCSTEPS#'${NPT_MC}'#g' NPT/*.conf
-    cd $WD
 
     for r in $( seq 1 ${NREP} )
     do
@@ -112,14 +98,26 @@ do
 	    cd $DN
 	    cp ${IND}/job.sh ${PR_JOB}
 	    cp ${IND}/GOMC_CPU_NVT .
-	    cp ${IND}/eq.conf .
 	    cp ${IND}/prod.conf .
-	    sed -i 's#MCSTEPS#'${EQ_MC}'#g' eq.conf
 	    sed -i 's#MCSTEPS#'${FE_MC}'#g' prod.conf
 	    sed -i 's#FREE_EN_FREQ#'${FE_FREQ}'#g' prod.conf
 	    sed -i 's#RUN_DIR#'`pwd`'#g' ${PR_JOB}
-	    sed -i 's#STATENUM#'${d}'#g' *.conf;
+	    sed -i 's#STATENUM#'${d}'#g' *.conf
 	    sed -i 's#INIT_STATE#'${d}'#g' *.conf
+	    #creat EQ directory	    
+	    mkdir EQ
+	    EQD=${TID}/${DN}/EQ
+	    cd ${EQD}
+	    mkdir NVT NPT
+	    cp ${IND}/NVT.conf ./NVT/.
+	    cp ${IND}/NPT.conf ./NPT/.
+	    cp ${IND}/GOMC_CPU_NVT ./NVT/.
+	    cp ${IND}/GOMC_CPU_NPT ./NPT/.
+	    sed -i 's#MCSTEPS#'${EQ_MC}'#g' NVT/*.conf
+	    sed -i 's#INIT_STATE#'${d}'#g' NVT/*.conf
+	    sed -i 's#MCSTEPS#'${NPT_MC}'#g' NPT/*.conf
+	    sed -i 's#INIT_STATE#'${d}'#g' NPT/*.conf
+
 	    cd ${TID}
 	done
     done
