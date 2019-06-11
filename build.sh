@@ -97,7 +97,7 @@ do
 	    mkdir $DN
 	    cd $DN
 	    cp ${IND}/job.sh ${PR_JOB}
-	    cp ${IND}/GOMC_CPU_NVT .
+	    cp ${IND}/GOMC_CPU_NPT .
 	    cp ${IND}/prod.conf .
 	    sed -i 's#MCSTEPS#'${FE_MC}'#g' prod.conf
 	    sed -i 's#FREE_EN_FREQ#'${FE_FREQ}'#g' prod.conf

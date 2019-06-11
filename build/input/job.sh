@@ -1,5 +1,5 @@
-#PBS -q mwsuq
-#PBS -l select=1:ncpus=NCPU:mem=4gb:cpu_type=Intel
+#PBS -q wsuq
+#PBS -l select=1:ncpus=NCPU:mem=2gb:cpu_type=Intel
 #PBS -j oe
 #PBS -m abe
 #PBS -M fj2314@wayne.edu
@@ -22,4 +22,4 @@ cd ../NPT/.
 ./GOMC_CPU_NPT +pNCPU NPT.conf > out.log
 echo "RUNING PRODUCTION"
 cd RUN_DIR
-./GOMC_CPU_NVT +pNCPU prod.conf > out_pr.log
+./GOMC_CPU_NPT +pNCPU prod.conf > out_pr.log

@@ -21,13 +21,13 @@ Solvent
 |            |______ pack (initial PDB and PSF files for equilibration)
 |
 |____________ TI_1
-             |_______ state_0 (production run in NVT simulation at lambda 0, using PDB and PSF files in EQ/NPT) 
+             |_______ state_0 (production run in NPT simulation at lambda 0, using PDB and PSF files in EQ/NPT) 
 	     |	      |
 	     |        |______ EQ
 	     |                |_______ NVT (running NVT simulation prior NPT, at lambda 0 using PDB and PSF files in build/pack)
 	     |	              |_______ NPT (running NPT simulation from equilibrated NVT simulation at lambda 0, using PDB and PSF files in EQ/NVT)
              |                
-             |_______ state_1 (production run in NVT simulation, using PDB and PSF files in EQ/NPT) 
+             |_______ state_1 (production run in NPT simulation, using PDB and PSF files in EQ/NPT) 
 	     |	      |
 	     |        |______ EQ
 	     |                |_______ NVT (running NVT simulation prior NPT at lambda 0, using PDB and PSF files in build/pack)
