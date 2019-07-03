@@ -74,10 +74,10 @@ DIHEDRALS
 !
 !atom types             Kchi    n   delta
 !
-CH3 CH2 CH2 CH2    0.665769     1      0.0 ! TraPPE 5
+CH3 CH2 CH2 CH2    0.705513     1      0.0 ! TraPPE 5
 CH3 CH2 CH2 CH2   -0.135507     2    180.0 ! TraPPE 5
 CH3 CH2 CH2 CH2    1.572510     3      0.0 ! TraPPE 5
-CH2 CH2 CH2 CH2    0.665769     1      0.0 ! TraPPE 5
+CH2 CH2 CH2 CH2    0.705513     1      0.0 ! TraPPE 5
 CH2 CH2 CH2 CH2   -0.135507     2    180.0 ! TraPPE 5
 CH2 CH2 CH2 CH2    1.572510     3      0.0 ! TraPPE 5
 OH1 CH2 CH2 CH2	   0.350977     1     0.00 ! TraPPE 5
@@ -141,11 +141,12 @@ CH2  CF2  CF2  CF2     -0.6791 	4   180.00
 CH2  CH2  CF2  CF3	0.8945	1     0.00
 CH2  CH2  CF2  CF3     -0.5789	2   180.00
 CH2  CH2  CF2  CF3	1.8605	3     0.00
-CH2  CH2  CF2  CF3      0.1634	4   180.00
+CH2  CH2  CF2  CF3     -0.1634	4   180.00
 CH2  CH2  CF2  CF2	0.8945	1     0.00
 CH2  CH2  CF2  CF2     -0.5789	2   180.00
 CH2  CH2  CF2  CF2	1.8605	3     0.00
-CH2  CH2  CF2  CF2      0.1634	4   180.00
+CH2  CH2  CF2  CF2     -0.1634	4   180.00
+
 ! for H7F1 and H6F2 telomer
 H    OH1  CF2  CH2      1.793   1     0.00  !QM (MP2/6-31+g(d,p))
 H    OH1  CF2  CH2      0.6984  2   180.00  !QM (MP2/6-31+g(d,p))

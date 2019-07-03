@@ -15,7 +15,7 @@ BOX_SIZE=37.6
 T=298
 P=1.01325
 RCUT=14
-RCUTLOW=0.01
+RCUTLOW=0.00
 FE_MC=100000000 #steps for free energy simulation
 EQ_MC=5000000   #steps for eq simulation
 NPT_MC=30000000 #steps for NPT simulation
@@ -30,7 +30,7 @@ if [ ${#COUL[@]} != ${#VDW[@]} ]; then
     echo "Warning: Number of Lambda states for VDW and COUL does not match!"
     exit 1
 elif [ ${#STATES[@]} != ${#VDW[@]} ]; then
-    echo "Warning: Number of Lambda states for VDW and COUL does not match!"
+    echo "Warning: Number of states does not match with VDW lambda!"
     exit 1
 fi
 if [ ${#SOLUTE[@]} != ${#SOLUTE_RESNAME[@]} ]; then 
@@ -56,10 +56,13 @@ do
     sed -i 's#SOLUTE#'${SOLUTE}'#g' Pack.inp;
     sed -i 's#BOXSIZE#'${PACK_SIZE}'#g' Pack.inp;
     ./packmol < Pack.inp >& PACK.log
-    vmd -dispdev text < build.tcl >& PACK.log
-
-    if [ ! -f "START.psf" ]; then
+    vmd -dispdev text < build.tcl >& PACK.log    
+    if [ ! -f "PACKED.pdb" ]; then
 	echo "Packing failed! Look at the ${WD}/${BUILD_DIR}/pack/PACK.log file."
+    fi
+    vmd -dispdev text < build.tcl >& PACK.log
+    if [ ! -f "START.psf" ]; then
+	echo "PSF generator failed! Look at the ${WD}/${BUILD_DIR}/pack/PACK.log file."
     fi
 
     #set the common variable in config file
