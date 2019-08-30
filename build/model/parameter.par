@@ -11,6 +11,7 @@ BONDS
 !atom type Kb          b0  All constants from Charmm
 CH2  CH2   99999999999     1.5400 ! Alkane
 CH2  CH3   99999999999     1.5400 ! Alkane
+OH1  CH3   99999999999     1.4300 ! Alcohol
 OH1  CH2   99999999999     1.4300 ! Alcohol
 OH1  H     99999999999     0.9450 ! Alcohol
 ! fluorcarbons
@@ -23,7 +24,10 @@ CH2  CF2   99999999999     1.5400
 CH2  CF3   99999999999     1.5400
 CH3  CF2   99999999999     1.5400
 !water SPC
-HO   OH2   99999999999     1.0000
+HO   OH2   99999999999     1.0000 ! OH bond in SPC
+!water TIP4P
+HO   OH2   99999999999     0.9572 ! OH bond in TIP4P
+OH2  MO    99999999999     0.1500 ! M-O bond in TIP4P
 
 ANGLES
 !
@@ -61,7 +65,10 @@ OH1  CH2  CF2   62.1    109.5
 OH1  CF2  CH3	62.1    109.5
 OH1  CF2  CH2   62.1    109.5
 !water SPC
-HO   OH2  HO   99999999999  109.47
+HO   OH2  HO   99999999999  109.47  ! Fix Angle
+!water TIP4P
+HO   OH2  HO   99999999999  104.52  ! Fix Angle
+HO   OH2  MO   99999999999   52.26  ! Fix Angle
 
 
 DIHEDRALS
@@ -179,9 +186,13 @@ CH2	0.000000    -0.091406   2.216863   0.0   0.0   0.0
 ! Fluorocarbons ! parameteres from Zhang and Siepmann JPCB 2005
 CF3	0.000000    -0.172877	2.446967   0.0   0.0   0.0			
 CF2	0.000000    -0.054645	2.654623   0.0   0.0   0.0
-! Octanol
+! alcohol
 H	0.000000     0.000000   0.000000   0.0   0.0   0.0
 OH1	0.000000    -0.184799   1.694918   0.0   0.0   0.0
 ! SPC 
 HO	0.000000     0.000000   0.0000000   0.0   0.0   0.0
 OH2	0.000000    -0.155411   1.7774185   0.0   0.0   0.0
+! TIP4P
+HO	0.000000     0.00000    0.000000    0.0   0.0   0.0
+MO      0.000000     0.00000    0.000000    0.0   0.0   0.0
+OH2	0.000000    -0.155043   1.770123    0.0   0.0   0.0

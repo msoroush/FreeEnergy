@@ -96,7 +96,7 @@ Change your directory to this repository and execute the following commands in y
 cd ~/Desktop/FreeEnergy
 ./build.sh
 ```
-If you are dealing with job scheduler, execute to following command to run the simulations (NVT equilibration, NPT equilibration, NPT production) in serial:
+If you are dealing with job scheduler, execute to following command to run the simulations (NVT equilibration, NPT equilibration, and NPT production) in serial:
 
 ```
 ./pr_subjob.sh
