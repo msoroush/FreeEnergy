@@ -19,9 +19,10 @@ do
 	for s in $( seq 0 ${NS} );
 	do
 	    SD=${STATE}$s;
+	    JNAME=${d}"_"$s".sh";
 	    cd ${SD};
-	    echo "   Submitting jobs for ${SD}";
-	    qsub *.sh;
+	    echo "   Submitting jobs for ${JNAME}";
+	    qsub ${JNAME};
 	    sleep 1;
 	    cd ${DN}
 	done
