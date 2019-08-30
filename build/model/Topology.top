@@ -23,14 +23,15 @@ MASS   6    H    1.0080 H  ! H in alcohol
 MASS   7  OH1	 15.999 O  ! O in alcohol
 MASS   8  CF2    50.000 C  ! CF2  	   
 MASS   9  CF3    69.000 C  ! CF3
-MASS  10  HO     1.0080 H  ! H in water
+MASS  10   HO     1.008 H  ! H in water
 MASS  11  OH2	 15.999 O  ! O in water
-MASS  12   HE	 4.0026 He ! He
-
+MASS  12   MO     0.000 D ! Dummy atom for TIP4P model
+MASS  13   HE	 4.0026 He ! He
 
 
 DEFA FIRS none LAST none
 AUTOGENERATE ANGLES DIHEDRALS
+
 
 RESI SPC        0.00 ! SPC water
 GROUP
@@ -38,6 +39,15 @@ ATOM H1 HO      0.41 ! H1    H2
 ATOM O2 OH2    -0.82 !   \  /
 ATOM H2 HO      0.41 !    O2
 BOND O2 H1 O2 H2
+PATCHING FIRS NONE LAST NONE
+
+RESI TIP4          0.00 ! water TIP4P model
+GROUP
+ATOM O2  OH2       0.000 !      O
+ATOM H1  HO        0.520 !    / | \
+ATOM H2	 HO   	   0.520 !   /  M  \
+ATOM M   MO       -1.040 ! H1       H2
+BOND O2 H1  O2 H2  O2 M       
 PATCHING FIRS NONE LAST NONE
 
 RESI HE        0.00 ! helium
@@ -150,6 +160,15 @@ BOND C10 C11 C11 C12 C12 C13
 BOND C13 C14 C14 C15 C15 C16
 PATCHING FIRS NONE LAST NONE
 
+
+!methanol
+RESI C1OH	  0.00
+GROUP
+ATOM H1   H     0.435 
+ATOM O1   OH1  -0.700   
+ATOM C1	  CH2   0.265   
+BOND H1 O1  O1 C1
+PATCHING FIRS NONE LAST NONE
 
 !1-octanol
 RESI C8OH	  0.00

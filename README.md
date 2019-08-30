@@ -1,6 +1,6 @@
 # FreeEnergy
 This repository is a bash script to prepare the simulation files for absolute FreeEnergy calculation using TI and FEP methods in GOMC.
-GOMC currently bias LJ and Coulombic interaction with lambda, using soft-core or hard-core scheme, as implemented in GROMACS. For more details regarding the biasing scheme, please refer to [GROMACS Documentation](http://manual.gromacs.org/documentation/2019/reference-manual/functions/free-energy-interactions.html). 
+GOMC currently bias LJ and Coulombic interaction with lambda, using soft-core or hard-core scheme, as implemented in GROMACS. For more details regarding the biasing scheme, please refer to GROMACS [Documentation](http://manual.gromacs.org/documentation/2019/reference-manual/functions/free-energy-interactions.html). 
 
 ## Software dependency:
 1. [packmol](http://leandro.iqm.unicamp.br/packmol/versionhistory/) for packing molecule in box. 
@@ -71,7 +71,7 @@ EQ_MC=2000000                                    # steps for equilibration simul
 NPT_MC=10000000                                  # steps for NPT equilibration simulation
 FE_FREQ=5000                                     # free energy calc frequency
 STATES=(0    1    2    3    4    5    6    7)    # state id (for user only) 
-VDW=(0.000 0.20 0.40 0.60 0.80 1.00 1.00 1.00)   # lambda vector for VDW
+VDW=(0.00  0.20 0.40 0.60 0.80 1.00 1.00 1.00)   # lambda vector for VDW
 COUL=(0.00 0.00 0.00 0.20 0.40 0.60 0.80 1.00)   # lambda vector for Coulomb
 ```
 
