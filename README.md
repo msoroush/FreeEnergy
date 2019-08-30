@@ -1,6 +1,6 @@
 # FreeEnergy
 This repository is a bash script to prepare the simulation files for absolute FreeEnergy calculation using TI and FEP methods in GOMC.
-GOMC currently bias LJ and Coulombic interaction with lambda, using soft-core or hard-core scheme, as implemented in GROMACS. For more details regarding the biasing scheme, please refer to GROMACS [Documentation](http://manual.gromacs.org/documentation/2019/reference-manual/functions/free-energy-interactions.html). 
+GOMC currently couples LJ and Coulombic interaction with lambda, using soft-core or hard-core scheme, as implemented in GROMACS. For more details regarding the coupling scheme, please refer to GROMACS [Documentation](http://manual.gromacs.org/documentation/2019/reference-manual/functions/free-energy-interactions.html). 
 
 ## Software dependency:
 1. [packmol](http://leandro.iqm.unicamp.br/packmol/versionhistory/) for packing molecule in box. 
@@ -44,8 +44,8 @@ To modify the configuration file, modify the `NVT.conf`(for NVT equilibratio), `
 ## How to add another solvent or solute
 To add another molecule, you need to:
 1.  Generate the PDB file for single molecule in `build/pdb/` directory. (using gaussview or VMD [molfacture](https://www.ks.uiuc.edu/Research/vmd/plugins/molefacture/) tools)
-2.  Update the Topology.top file in `build/model/`
-3.  Update the parameter.par file in `build/model/`
+2.  Update the `Topology.top` file in `build/model/`
+3.  Update the `parameter.par` file in `build/model/`
 
 ## How to modify the system parameter?
 ### Free energy systems:
@@ -84,9 +84,25 @@ BOX_SIZE=37.6                                    # length of cubic box (A)
 ```
 
 ### Parallelization:
-Modify the job script `job.sh` in `build/input/`
-We can set the number threads for openmp parallelization in `build.sh`:
+Modify the job script `job.sh` in `build/input/`. We can set the number threads for openmp parallelization in `build.sh`:
 ```bash
 #packing info 
 CPU=4                                            # number of CPU threads
+```
+
+## How to run it?
+Change your directory to this repository and execute the following commands in your terminal:
+
+```
+cd ~/Desktop/FreeEnergy
+./build.sh
+```
+If you are dealing with job scheduler, execute to following command to run the equilibration simulations:
+
+```
+./eq_subjob.sh
+```
+Once the equilibration simulaitons were finished, execute to following command to run the production simulations:
+```
+./pr_subjob.sh
 ```
