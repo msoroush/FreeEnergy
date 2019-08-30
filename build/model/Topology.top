@@ -45,7 +45,7 @@ RESI TIP4          0.00 ! water TIP4P model
 GROUP
 ATOM O2  OH2       0.000 !      O
 ATOM H1  HO        0.520 !    / | \
-ATOM H2	 HO   	   0.520 !   /  M  \
+ATOM H2  HO        0.520 !   /  M  \
 ATOM M   MO       -1.040 ! H1       H2
 BOND O2 H1  O2 H2  O2 M       
 PATCHING FIRS NONE LAST NONE
@@ -166,7 +166,7 @@ RESI C1OH	  0.00
 GROUP
 ATOM H1   H     0.435 
 ATOM O1   OH1  -0.700   
-ATOM C1	  CH2   0.265   
+ATOM C1   CH2   0.265   
 BOND H1 O1  O1 C1
 PATCHING FIRS NONE LAST NONE
 

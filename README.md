@@ -34,7 +34,7 @@ Solvent
              |_______ state_0 (equilibrte the system with NVT simulation with lambda state 0, using PDB and PSF files in EQ/NPT) 
              |                (production run in NVT simulation with lambda state 0, using equilibrated system)
              |_______ state_1 (running NVT simulation with lambda state 1, using PDB and PSF files in EQ/NPT)
-             |                (production run in NVT simulation with lambda state 0, using equilibrated system)
+             |                (production run in NVT simulation with lambda state 1, using equilibrated system)
              |_______  ...
   ```
   
