@@ -1,17 +1,23 @@
 # FreeEnergy
-This repository is a bash script to prepare the simulation files for FreeEnergy calculation in GOMC.
+This repository is a bash script to prepare the simulation files for absolute FreeEnergy calculation using TI and FEP methods in GOMC.
+GOMC currently bias LJ and Coulombic interaction with lambda, using soft-core or hard-core scheme, as implemented in GROMACS. For more details regarding the biasing scheme, please refer to [GROMACS Documentation](http://manual.gromacs.org/documentation/2019/reference-manual/functions/free-energy-interactions.html). 
 
-## Softwar dependency:
+## Software dependency:
 1. [packmol](http://leandro.iqm.unicamp.br/packmol/versionhistory/) for packing molecule in box. 
-    - Update the packmol executable file in `buld/pack/.` directory.
+    - Update the packmol executable file in `build/pack/.` directory.
 2. [vmd](https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD) for generating PSF file.
     - vmd executable must be added to the path.
 3. [GOMC](https://github.com/GOMC-WSU/GOMC/tree/FreeEnergy) Monte Carlo code to run simulation in NVT and NPT ensemble.
-    - Update the GOMC executable files (GOMC_CPU_NVT, and GOMC_CPU_NPT) in `buld/input/.` directory.
-4. [alchemlyb](https://github.com/msoroush/alchemlyb) for analysis the results.
+    - Update the GOMC executable files (GOMC_CPU_NVT, and GOMC_CPU_NPT) in `build/input/.` directory.
+4. [alchemlyb](https://github.com/alchemistry/alchemlyb) for analysis the results using TI and FEP methods.
 
 ## What does it do?
-The `build.sh` will pack the box with defined solvent, generate PDB and PSF file for solvent and solute. It creates directory for each solvent. Inside each solvent directory, it creates `EQ` direcotry for NVT and NPT equilibration simulation. Then it creates `TI_` direcotry for each replica and inside that create separate `state_0, state_1, ...` directory.
+The `build.sh` will pack the box with defined number of solvent and a solute, generate PDB and PSF file for solvent and solute. It creates directory for each solvent. Inside each solvent directory, it creates `EQ` direcotry for NVT and NPT equilibration simulation. Then it creates `TI_` direcotry for each replica and inside that create separate `state_0, state_1, ...` directory.
+
+There are two python scripts available to calculate the free energy using BAR, MBAR, and TI estimators in alchemlyb python library.
+1. `freeEn_correlated_data.py`: Calculate the free energy difference using correlated samples.
+2. `freeEn_uncorrelated_data.py`: Calculate the free energy difference using uncorrelated samples.
+
 ```
 Solvent
 |___________ build
@@ -53,13 +59,13 @@ TOT_SOLUTE_RESNAME=(F3O F5O F7O)                            # residue name of so
 ```
 
 ### Config file:
-There are some options in configfiles that can be controls by `build.sh`:
+There are some options in config files that can be controls by `build.sh`:
 ```bash
 #simulation info
 T=298                                            # temperature (K)
 P=1.01325                                        # pressure (bar)
 RCUT=14                                          # cutoff distance (A)
-RCUTLOW=0.01                                     # hard cutoff (A) to avoid overlap
+RCUTLOW=0.00                                     # hard cutoff (A) to avoid overlap
 FE_MC=50000000                                   # steps for free energy simulation
 EQ_MC=2000000                                    # steps for equilibration simulation (both NVT.conf and eq.conf)
 NPT_MC=10000000                                  # steps for NPT equilibration simulation
@@ -78,6 +84,7 @@ BOX_SIZE=37.6                                    # length of cubic box (A)
 ```
 
 ### Parallelization:
+Modify the job script `job.sh` in `build/input/`
 We can set the number threads for openmp parallelization in `build.sh`:
 ```bash
 #packing info 

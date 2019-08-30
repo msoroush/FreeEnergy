@@ -1,24 +1,47 @@
-from alchemlyb.parsing.gomc import  extract_dHdl
-from alchemlyb.parsing.gomc import  extract_u_nk
-import alchemlyb.preprocessing.subsampling as ss
-from alchemlyb.estimators import MBAR, BAR
-from alchemlyb.estimators import TI
+from alchemlyb.parsing.gomc import  extract_dHdl, extract_u_nk
+from alchemlyb.estimators import MBAR, BAR, TI
 import pandas as pd
 import numpy as np
 import os
 
+
 bd = os.path.dirname(os.path.realpath(__file__))
 
-temprature = 298 #temperature (K)
-k_b = 1.9872036E-3 #kcal/mol/K
+temprature = 298          #temperature (K)
+k_b = 1.9872036E-3        #kcal/mol/K
 k_b_T = temprature * k_b
 
-numFile = 27
+def get_delta(est):
+    """ Return the change in free energy and standard deviation for TI and MBAR estimators.
+    
+    """
+    delta = est.delta_f_.iloc[0, -1] * k_b_T
+    d_delta = est.d_delta_f_.iloc[0, -1] * k_b_T
+    return delta, d_delta
+
+
+def get_delta2(est):
+    """ Return the change in free energy and standard deviation for BAR estimator.
+    
+    """
+    ee = 0.0
+
+    for i in range(len(est.d_delta_f_) - 1):
+        ee += est.d_delta_f_.values[i][i+1]**2
+    
+    delta = est.delta_f_.iloc[0, -1] * k_b_T
+    d_delta = k_b_T * ee**0.5
+    return delta, d_delta
+
+##################################################
+
+numFile = 22
 compounds = ["F3O", "F5O", "F7O", "F9O", "F11O", "F13O", "F15O", "F17O"]
 fname = "Free_Energy_BOX_0_PRODUCTION_"
 ext = ".dat"
 NREP = 5
-print("#Compound  TI-est(kcal/mol)  stdev  MBAR-est(kcal/mol)  stdev  BAR-est(kcal/mol) ")
+
+print("%16s, %16s, %16s, %16s, %16s, %16s, %16s" % ("#Compound","TI(kcal/mol)","stdev","MBAR(kcal/mol)","stdev","BAR(kcal/mol)","stdev"))
 
 #loop through all compounds
 for com in compounds:
@@ -32,15 +55,14 @@ for com in compounds:
         for i in range(numFile + 1):
             freeEn_file = fname + str(i) + ext
             file_path = data_loc + str(i) + "/" + freeEn_file
-            #print("%4s: Reading File: %s " % (com, file_path))
+            print("%4s: Reading File: %s " % (com, file_path))
             files.append(file_path)
-            
+
         #for TI estimator
-        #print("Working on TI method ...")]
+        #print("Working on TI method ...")
         dHdl = pd.concat([extract_dHdl(f, T=temprature) for f in files])
         ti = TI().fit(dHdl)
-        sum_ti = ti.delta_f_.loc[[(0.0, 0.0)], [(1.0, 1.0)]].values[0][0] * k_b_T
-        sum_ds_ti = ti.d_delta_f_.loc[[(0.0, 0.0)], [(1.0, 1.0)]].values[0][0] * k_b_T
+        sum_ti, sum_ds_ti = get_delta(ti)
         tis.append(sum_ti)
 
 
@@ -48,16 +70,17 @@ for com in compounds:
         #print("Working on MBAR method ...")
         u_nk = pd.concat([extract_u_nk(f, T=temprature) for f in files])
         mbar = MBAR().fit(u_nk)
-        sum_mbar = mbar.delta_f_.loc[[(0.0, 0.0)], [(1.0, 1.0)]].values[0][0] * k_b_T
-        sum_ds_mbar = mbar.d_delta_f_.loc[[(0.0, 0.0)], [(1.0, 1.0)]].values[0][0] * k_b_T
+        sum_mbar, sum_ds_mbar = get_delta(mbar)
         mbars.append(sum_mbar)
         
         
+        #for BAR estimator
+        #print("Working on BAR method ...")
         bar = BAR().fit(u_nk)
-        sum_bar = bar.delta_f_.loc[[(0.0, 0.0)], [(1.0, 1.0)]].values[0][0] * k_b_T
+        sum_bar, sum_ds_bar = get_delta2(bar)
         bars.append(sum_bar)
     
-        print("Replica-%d, %4s,  %7.4f,  %7.4f,  %7.4f,  %7.4f,  %7.4f" % (nr, com, sum_ti, sum_ds_ti, sum_mbar, sum_ds_mbar, sum_bar))
+        print("Replica-%d, %4s,  %7.4f,  %7.4f,  %7.4f,  %7.4f,  %7.4f,  %7.4f" % (nr, com, sum_ti, sum_ds_ti, sum_mbar, sum_ds_mbar, sum_bar, sum_ds_bar))
 
         
     tis = np.array(tis)
